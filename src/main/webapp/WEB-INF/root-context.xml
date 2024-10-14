@@ -28,5 +28,6 @@
     </bean>
     <mybatis:scan base-package="org.pgm.todopro.mapper"/>
     <context:component-scan base-package="org.pgm.todopro.config"/>
-    
+    <context:component-scan base-package="org.pgm.todopro.service"/>
+
 </beans>

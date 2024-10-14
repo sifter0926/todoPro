@@ -9,7 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<html>
+<%--<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,8 @@
                 </div>
             </div>
         </nav>
-    </div>
+    </div>--%>
+<%@include file="../includes/header.jsp"%>
     <div class="row-content">
         <div class="card">
             <div class="card-header">
@@ -76,7 +77,8 @@
             </div>
         </div>
     </div>
-    <div class="row footer">
+<%@include file="../includes/header.jsp"%>
+   <%-- <div class="row footer">
         <div class="row fixed-bootom" style="z-index: -100">
             <footer class="py-1 my-1">
                 <p class="text-center text-muted">Footer</p>
@@ -86,4 +88,4 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-</html>
+</html>--%>
