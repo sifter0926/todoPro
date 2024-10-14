@@ -49,7 +49,7 @@ public class TodoController {
         model.addAttribute("todoList", todoList);
         //return "todo/list";
     }
-    @GetMapping("/read")
+    @GetMapping({"/read","/modify"})
     public void read(@RequestParam("tno") int tno, Model model) {
         log.info("read");
         TodoDTO todoDTO=todoService.getOne(tno);
