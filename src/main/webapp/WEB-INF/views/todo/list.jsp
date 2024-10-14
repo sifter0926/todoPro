@@ -66,7 +66,7 @@
                     <c:forEach items="${todoList}" var="dto">
                     <tr>
                         <th scope="row">${dto.tno}</th>
-                        <td>${dto.title}</td>
+                        <td><a href="/todo/read?tno=${dto.tno}">${dto.title}</a></td>
                         <td>${dto.writer}</td>
                         <td>${dto.dueDate}</td>
                         <td>${dto.finished}</td>
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-<%@include file="../includes/header.jsp"%>
+<%@include file="../includes/footer.jsp"%>
    <%-- <div class="row footer">
         <div class="row fixed-bootom" style="z-index: -100">
             <footer class="py-1 my-1">

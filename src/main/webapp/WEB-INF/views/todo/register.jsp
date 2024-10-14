@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../includes/header.jsp"%>
 <div class="row-content">
     <div class="card">
@@ -27,8 +28,20 @@
                         <button type="reset" class="btn btn-secondary">Reset</button>
                     </div>
                 </div>
-
             </form>
+            <script>
+                console.log(`${errors}`)
+            </script>
+            <%--${errors}--%>
+
+           <script>
+                const serverValidResult = {}
+
+                <c:forEach items = "${errors}" var="error">
+                serverValidResult['${error.getField()}'] = '${error.defaultMessage}'
+                </c:forEach>
+                console.log(serverValidResult)
+            </script>--%>
 
         </div>
     </div>
