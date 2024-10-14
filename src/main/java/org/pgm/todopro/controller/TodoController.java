@@ -47,8 +47,23 @@ public class TodoController {
         log.info("list");  //  todo/list
         List<TodoDTO> todoList=todoService.getAll();
         model.addAttribute("todoList", todoList);
+
         //return "todo/list";
     }
+    @PostMapping("/remove")
+    public String remove(TodoDTO todoDTO, RedirectAttributes redirectAttributes) {
+        log.info("remove()");
+        todoService.remove(todoDTO.getTno());
+        return "redirect:/todo/list";
+    }
+    @PostMapping("/modify")
+    public String modify(TodoDTO todoDTO, RedirectAttributes redirectAttributes){
+        log.info("modify()"+todoDTO);
+        todoService.modify(todoDTO);
+        redirectAttributes.addAttribute("tno",todoDTO.getTno());
+        return "redirect:/todo/read";
+    }
+
     @GetMapping({"/read","/modify"})
     public void read(@RequestParam("tno") int tno, Model model) {
         log.info("read");
