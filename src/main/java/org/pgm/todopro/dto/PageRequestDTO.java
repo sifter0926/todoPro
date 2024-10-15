@@ -24,7 +24,22 @@ public class PageRequestDTO {
     @Max(value = 100)
     @Positive
     private int size=3;
+
     public int getSkip(){
         return (page - 1) * size;
     }
+    public String getLink(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("page="+this.page);
+        builder.append("&size="+this.size);
+        return builder.toString();
+    }
+
 }
+
+
+
+
+
+
+
