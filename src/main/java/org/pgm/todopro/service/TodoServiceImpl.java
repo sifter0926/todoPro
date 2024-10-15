@@ -3,6 +3,8 @@ package org.pgm.todopro.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.pgm.todopro.dto.PageRequestDTO;
+import org.pgm.todopro.dto.PageResponseDTO;
 import org.pgm.todopro.dto.TodoDTO;
 import org.pgm.todopro.mapper.TodoMapper;
 import org.pgm.todopro.vo.TodoVO;
@@ -17,6 +19,21 @@ import java.util.stream.Collectors;
 public class TodoServiceImpl implements TodoService{
     private final TodoMapper todoMapper;
     private final ModelMapper modelMapper;
+
+    @Override
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+        List<TodoVO> voList=todoMapper.selectList(pageRequestDTO);
+        List<TodoDTO> dtoList=voList.stream()
+                .map(vo->modelMapper.map(vo, TodoDTO.class))
+                .collect(Collectors.toUnmodifiableList());
+        int total=todoMapper.getCount(pageRequestDTO);
+        PageResponseDTO<TodoDTO> pageResponseDTO=PageResponseDTO.<TodoDTO>withAll()
+                .dtoList(dtoList)
+                .total(total)
+                .pageRequestDTO(pageRequestDTO)
+                .build();
+        return pageResponseDTO;
+    }
 
     @Override
     public void register(TodoDTO todoDTO) {
