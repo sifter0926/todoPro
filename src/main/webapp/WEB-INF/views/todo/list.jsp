@@ -50,11 +50,14 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Search</h5>
+
             <form action="/todo/list" method="get">
                 <input type="hidden" name="size">
+
                 <div class="mb-3">
                     <input type="checkbox" name="finished">완료여부
                 </div>
+
                 <div class="mb-3">
                     <input type="checkbox" name="types" value="t">제목
                     <input type="checkbox" name="types" value="w">작성자
