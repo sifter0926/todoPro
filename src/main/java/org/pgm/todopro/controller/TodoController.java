@@ -3,6 +3,7 @@ package org.pgm.todopro.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.pgm.todopro.dto.PageRequestDTO;
 import org.pgm.todopro.dto.TodoDTO;
 import org.pgm.todopro.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +43,25 @@ public class TodoController {
         return "redirect:/todo/list";
     }
 
-    @GetMapping("/list")
+    //@GetMapping("/list")
     public void list(Model model) {
         log.info("list");  //  todo/list
         List<TodoDTO> todoList=todoService.getAll();
         model.addAttribute("todoList", todoList);
-
         //return "todo/list";
     }
+
+    @GetMapping("/list")
+    public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult,Model model) {
+        log.info("list");
+        if (bindingResult.hasErrors()) {
+            pageRequestDTO=PageRequestDTO.builder().build();
+        }
+        model.addAttribute("pageRequestDTO", pageRequestDTO);
+        model.addAttribute("responseDTO", todoService.getList(pageRequestDTO));
+    }
+
+
     @PostMapping("/remove")
     public String remove(TodoDTO todoDTO, RedirectAttributes redirectAttributes) {
         log.info("remove()");
