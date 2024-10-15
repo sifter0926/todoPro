@@ -53,6 +53,7 @@
 
             <form action="/todo/list" method="get">
                 <input type="hidden" name="size" value="${pageRequestDTO.size}">
+                <input type="hidden" name>
 
                 <div class="mb-3">
                     <input type="checkbox" name="finished" ${pageRequestDTO.finished?"checked":""}>완료여부
@@ -128,6 +129,7 @@
                     </ul>
                 </nav>
                 <script>
+
                     document.querySelector(".pagination").addEventListener("click", function (e){
                         e.preventDefault()
                         e.stopPropagation()
@@ -136,7 +138,10 @@
                             return
                         }
                         const num=target.getAttribute("data-num")
-                        self.location=`/todo/list?page=\${num}`
+                        const formObj=document.querySelector("form");
+                        formObj.innerHTML+=`<input type='hidden' name='page' value='\${num}'>`
+                        formObj.submit()
+                    //    self.location=`/todo/list?page=\${num}&\${pageRequestDTO.link}`
                     })
                 </script>
             </div>
