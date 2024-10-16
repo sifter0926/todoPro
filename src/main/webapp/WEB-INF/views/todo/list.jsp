@@ -142,7 +142,14 @@
                         formObj.innerHTML+=`<input type='hidden' name='page' value='\${num}'>`
                         formObj.submit()
                     //    self.location=`/todo/list?page=\${num}&\${pageRequestDTO.link}`
-                    })
+                    },false)
+                    document.querySelector(".clearBtn").addEventListener("click", function (e){
+                        e.preventDefault()
+                        e.stopPropagation()
+
+                        self.location ='/todo/list'
+
+                    },false)
                 </script>
             </div>
         </div>
